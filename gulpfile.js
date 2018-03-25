@@ -1,9 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
-var gulpIf = require('gulp-if');
-var cssnano = require('gulp-cssnano');
 var concat = require('gulp-concat');
 var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
@@ -71,9 +68,7 @@ gulp.task('clean:dist', function() {
 });
 
 gulp.task('serve', function(callback) {
-    exec('node server.js', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
+    exec('node server.js', {maxBuffer: 1024 * 500}, function (err, stdout, stderr) {
         callback(err);
     });
 });

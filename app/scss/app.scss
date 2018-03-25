@@ -5,21 +5,71 @@ body {
 }
 
 .case-chek-app {
-  display: flex;
-  justify-content: center;
+  display: block;
   border: 5px solid grey;
   padding: 100px 50px;
   border-radius: 10px;
   background-color: white;
+
+  .chicago-data-list {
+    display: flex;
+    justify-content: center;
+
+    .img-container {
+      overflow: hidden;
+      padding-left: 0px;
+      margin: 10px;
+      border: 2px dashed lightgrey;
+      border-radius: 10px;
+    }
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: flex-end;
+
+    .prev-button {
+      width: 50%;
+    }
+    .next-button {
+      width: 50%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .search-component {
+    display: flex;
+    justify-content: center;
+    margin: 25px 15px 50px;
+
+    .search-text {
+      text-align: center;
+    }
+  }
 }
 
 .lib-panel {
   margin-bottom: 20Px;
 }
-.lib-panel img {
-  width: 100%;
-  background-color: transparent;
+
+// hover effect
+.hvr-grow {
+  cursor: pointer;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  transition-duration: 0.3s;
+  transition-property: transform;
 }
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+  transform: scale(1.1);
+}
+
 
 .lib-panel .row,
 .lib-panel .col-md-6 {
@@ -70,4 +120,49 @@ body {
 
 .no-padding {
   padding: 0;
+}
+
+#custom-search-form {
+  margin:0;
+  margin-top: 5px;
+  padding: 0;
+}
+
+#custom-search-form .search-query {
+  padding-right: 3px;
+  padding-right: 4px \9;
+  padding-left: 3px;
+  padding-left: 4px \9;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: width  0.2s ease-in-out;
+  -moz-transition:width  0.2s ease-in-out;
+  -o-transition: width  0.2s ease-in-out;
+  transition: width  0.2s ease-in-out;
+}
+
+#custom-search-form button {
+  border: 0;
+  background: none;
+  /** belows styles are working good */
+  padding: 2px 5px;
+  margin-top: 2px;
+  position: relative;
+  left: -28px;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.search-query:focus + button {
+  z-index: 3;
+}
+.search-query:focus{
+  width: 260px;
 }
