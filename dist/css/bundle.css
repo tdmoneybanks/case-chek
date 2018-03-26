@@ -32,12 +32,12 @@
     display: flex;
     justify-content: center; }
     .case-chek-app .chicago-data-list .item-name {
-      max-width: 80%;
       display: inline-block;
-      vertical-align: bottom;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
+      vertical-align: bottom;
+      max-width: 80%;
       font-weight: bold;
       font-size: 16px; }
     .case-chek-app .chicago-data-list .divider {
@@ -89,10 +89,13 @@
       display: flex;
       justify-content: flex-end; }
   @media screen and (min-width: 0px) and (max-width: 560px) {
-    .case-chek-app .inspection-violations {
+    .case-chek-app .inspection-violations, .case-chek-app .inspection-results-table, .case-chek-app .divider, .case-chek-app .card-header-seperator {
       display: none; }
-    .case-chek-app .inspection-results-table {
-      display: none; } }
+    .case-chek-app .chicago-data-list .item-type, .case-chek-app .chicago-data-list .item-name {
+      display: unset !important;
+      white-space: normal; }
+    .case-chek-app .chicago-data-list .img-container {
+      height: 150px; } }
 
 .row-margin-bottom {
   margin-bottom: 20px; }

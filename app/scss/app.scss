@@ -1,3 +1,11 @@
+@mixin text-styling {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+
 .case-chek-page {
   background-color: grey;
   display: flex;
@@ -45,12 +53,8 @@
     justify-content: center;
 
     .item-name {
+      @include text-styling;
       max-width: 80%;
-      display: inline-block;
-      vertical-align: bottom;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
       font-weight: bold;
       font-size: 16px;
     }
@@ -61,11 +65,7 @@
     }
 
     .item-type {
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      vertical-align: bottom;
+      @include text-styling;
       max-width: 40%;
       font-style: italic;
       font-weight: lighter;
@@ -123,12 +123,19 @@
   }
 
   @media screen and (min-width: 0px) and (max-width: 560px) {
-    .inspection-violations {
+    .inspection-violations, .inspection-results-table, .divider, .card-header-seperator {
       display: none;
     }
 
-    .inspection-results-table {
-      display: none;
+    .chicago-data-list {
+      .item-type, .item-name {
+        display: unset !important;
+        white-space: normal;
+      }
+
+      .img-container {
+        height: 150px;
+      }
     }
   }
 }
