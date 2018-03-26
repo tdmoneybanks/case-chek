@@ -10,14 +10,14 @@ var del = require('del');
 var exec = require('child_process').exec;
 
 gulp.task('default', function (callback) {
-    runSequence(['copy-assets', 'copy-deps', 'build-sass', 'build-js:dev', 'watch', 'serve'],
+    runSequence(['copy-index', 'copy-assets', 'copy-deps', 'build-sass', 'build-js:dev', 'watch', 'serve'],
         callback
     );
 });
 
 gulp.task('build:prod', function (callback) {
     runSequence('clean:dist',
-        ['copy-assets', 'copy-deps', 'build-sass', 'build-js'],
+        ['copy-index', 'copy-assets', 'copy-deps', 'build-sass', 'build-js'],
         callback
     );
 });
@@ -32,7 +32,7 @@ gulp.task('build-sass', function(){
 gulp.task('watch', function() {
     gulp.watch('app/scss/**/*.scss', ['build-sass', 'serve']);
     gulp.watch('app/js/**/*.js', ['build-js:dev', 'serve']);
-    gulp.watch('app/index.html', ['copy-assets', 'serve']);
+    gulp.watch('app/**/*.html', ['copy-index', 'copy-assets', 'serve']);
 });
 
 
@@ -58,9 +58,14 @@ gulp.task('copy-deps', function() {
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('copy-assets', function() {
+gulp.task('copy-index', function() {
     return gulp.src('app/index.html')
         .pipe(gulp.dest('dist'))
+});
+
+gulp.task('copy-assets', function() {
+    return gulp.src('app/templates/**/*.html')
+        .pipe(gulp.dest('dist/templates'))
 });
 
 gulp.task('clean:dist', function() {
