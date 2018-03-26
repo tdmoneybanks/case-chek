@@ -1,7 +1,13 @@
-body {
+.case-chek-page {
   background-color: grey;
   display: flex;
   justify-content: center; }
+  .case-chek-page .img-container {
+    overflow: hidden;
+    padding-left: 0px;
+    margin: 10px;
+    border: 2px dashed lightgrey;
+    border-radius: 10px; }
 
 .case-chek-app {
   display: block;
@@ -9,15 +15,70 @@ body {
   padding: 100px 50px;
   border-radius: 10px;
   background-color: white; }
+  .case-chek-app .search-component {
+    display: flex;
+    justify-content: center;
+    margin: 25px 15px 50px; }
+    .case-chek-app .search-component .search-text {
+      text-align: center; }
+  .case-chek-app .advanced-search-container {
+    display: flex;
+    justify-content: center;
+    text-align: center; }
+    .case-chek-app .advanced-search-container .keyword-label {
+      font-weight: bold;
+      margin: 5px; }
   .case-chek-app .chicago-data-list {
     display: flex;
     justify-content: center; }
-    .case-chek-app .chicago-data-list .img-container {
+    .case-chek-app .chicago-data-list .item-name {
+      max-width: 80%;
+      display: inline-block;
+      vertical-align: bottom;
       overflow: hidden;
-      padding-left: 0px;
-      margin: 10px;
-      border: 2px dashed lightgrey;
-      border-radius: 10px; }
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: bold;
+      font-size: 16px; }
+    .case-chek-app .chicago-data-list .divider {
+      color: lightgrey;
+      font-size: 24px; }
+    .case-chek-app .chicago-data-list .item-type {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: bottom;
+      max-width: 40%;
+      font-style: italic;
+      font-weight: lighter;
+      color: lightgrey;
+      font-size: 16px; }
+    .case-chek-app .chicago-data-list .inspection-results-table {
+      text-align: center;
+      margin-bottom: 5px; }
+    .case-chek-app .chicago-data-list .inspection-violations {
+      position: relative;
+      overflow: hidden;
+      text-align: justify;
+      line-height: 1.2em;
+      max-height: 8.0em;
+      margin-right: -1em;
+      padding-right: 1em;
+      margin-bottom: 15px; }
+    .case-chek-app .chicago-data-list .inspection-violations:before {
+      content: '...';
+      position: absolute;
+      right: 0;
+      bottom: 0; }
+    .case-chek-app .chicago-data-list .inspection-violations:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      width: 1em;
+      height: 1em;
+      margin-top: 0.2em;
+      background: white; }
   .case-chek-app .pagination-container {
     display: flex;
     justify-content: flex-end; }
@@ -27,16 +88,89 @@ body {
       width: 50%;
       display: flex;
       justify-content: flex-end; }
-  .case-chek-app .search-component {
-    display: flex;
-    justify-content: center;
-    margin: 25px 15px 50px; }
-    .case-chek-app .search-component .search-text {
-      text-align: center; }
+  @media screen and (min-width: 0px) and (max-width: 560px) {
+    .case-chek-app .inspection-violations {
+      display: none; }
+    .case-chek-app .inspection-results-table {
+      display: none; } }
 
-.lib-panel {
+.row-margin-bottom {
+  margin-bottom: 20px; }
+
+.no-padding {
+  padding: 0; }
+
+.list-card {
   margin-bottom: 20Px; }
+  .list-card .box-shadow {
+    border-radius: 15px;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); }
+  .list-card .card-row {
+    padding: 0 20px 0 20px; }
+    .list-card .card-row .card-header-seperator {
+      height: 2px;
+      background-color: lightgrey;
+      margin: 7px 0 7px 0; }
+  .list-card .card-desc {
+    position: relative;
+    height: 100%;
+    display: block;
+    font-size: 13px; }
+  .list-card .col-md-6 {
+    border-radius: 15px;
+    padding: 0;
+    background-color: #FFFFFF; }
 
+.modal .details-modal-content {
+  display: flex;
+  justify-content: space-around; }
+
+.modal .modal-header {
+  border-bottom: none;
+  position: relative; }
+  .modal .modal-header .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0; }
+
+.modal .inspection-panel {
+  -moz-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  -webkit-transition: all .3s ease; }
+  .modal .inspection-panel .panel-heading {
+    padding: 20px 10px; }
+    .modal .inspection-panel .panel-heading .fa {
+      margin-top: 10px;
+      font-size: 58px; }
+  .modal .inspection-panel .list-group-item {
+    color: #777777;
+    border-bottom: 1px solid rgba(250, 250, 250, 0.5); }
+  .modal .inspection-panel .panel-body {
+    background-color: #f0f0f0;
+    font-size: 40px;
+    color: #777777;
+    padding: 20px;
+    margin: 0px; }
+  .modal .inspection-panel .violations-panel-text {
+    overflow: hidden;
+    font-size: 12px; }
+
+.modal .panel-pricing:hover {
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2); }
+
+.modal .modal-footer {
+  border-top: none;
+  padding: 0; }
+  .modal .modal-footer .btn-group > .btn:first-child {
+    border-bottom-left-radius: 0; }
+
+/*
+ * Vendor SCSS
+ */
 .hvr-grow {
   cursor: pointer;
   transform: translateZ(0);
@@ -50,85 +184,3 @@ body {
 .hvr-grow:focus,
 .hvr-grow:active {
   transform: scale(1.1); }
-
-.lib-panel .row,
-.lib-panel .col-md-6 {
-  border-radius: 15px;
-  padding: 0;
-  background-color: #FFFFFF; }
-
-.lib-panel .lib-row {
-  padding: 0 20px 0 20px; }
-
-.lib-panel .lib-row.lib-header {
-  background-color: #FFFFFF;
-  font-size: 20px;
-  padding: 10px 20px 0 20px; }
-
-.lib-panel .lib-row.lib-header .lib-header-seperator {
-  height: 2px;
-  width: 26px;
-  background-color: #d9d9d9;
-  margin: 7px 0 7px 0; }
-
-.lib-panel .lib-row.lib-desc {
-  position: relative;
-  height: 100%;
-  display: block;
-  font-size: 13px; }
-
-.lib-panel .lib-row.lib-desc a {
-  position: absolute;
-  width: 100%;
-  bottom: 10px;
-  left: 20px; }
-
-.row-margin-bottom {
-  margin-bottom: 20px; }
-
-.box-shadow {
-  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); }
-
-.no-padding {
-  padding: 0; }
-
-#custom-search-form {
-  margin: 0;
-  margin-top: 5px;
-  padding: 0; }
-
-#custom-search-form .search-query {
-  padding-right: 3px;
-  padding-right: 4px \9;
-  padding-left: 3px;
-  padding-left: 4px \9;
-  /* IE7-8 doesn't have border-radius, so don't indent the padding */
-  margin-bottom: 0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-transition: width  0.2s ease-in-out;
-  -moz-transition: width  0.2s ease-in-out;
-  -o-transition: width  0.2s ease-in-out;
-  transition: width  0.2s ease-in-out; }
-
-#custom-search-form button {
-  border: 0;
-  background: none;
-  /** belows styles are working good */
-  padding: 2px 5px;
-  margin-top: 2px;
-  position: relative;
-  left: -28px;
-  /* IE7-8 doesn't have border-radius, so don't indent the padding */
-  margin-bottom: 0;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px; }
-
-.search-query:focus + button {
-  z-index: 3; }
-
-.search-query:focus {
-  width: 260px; }
