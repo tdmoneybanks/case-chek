@@ -8,32 +8,86 @@
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/bundle.css">
 </head>
-<body>
+<body class="case-chek-page">
 <div id="app" class="col-lg-10 case-chek-app" ng-app="caseChekApp">
     <div ng-controller="AppController">
         <div class="col-lg-12 search-component row">
             <div class="col-md-12">
                 <h1 class="search-text">Find Chicago Data</h1>
-                <input id="textinput" name="textinput" type="text" ng-model="searchText" ng-change="search()" placeholder="Search Chicago Data" class="form-control input-md">
+                <input name="chicago-data-search" type="text" ng-model="searchText" ng-change="search()" placeholder="Search Chicago Data" class="form-control input-md">
+            </div>
+        </div>
+        <div class="row advanced-search-component">
+            <div class="col-md-12 advanced-search-container">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-file">
+                            </span>Advanced Search</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="keyword-label">
+                                        Search By:
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" ng-model="keys.name" ng-change="search()">
+                                        <label class="form-check-label">Name</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" ng-model="keys.type" ng-change="search()">
+                                        <label class="form-check-label">Type</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" ng-model="keys.results" ng-change="search()">
+                                        <label class="form-check-label">Result</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-lg-12" ng-controller="ListController">
             <div class="chicago-data-list row row-margin-bottom">
                 <div ng-repeat="item in data" class="col-md-10 no-padding lib-item" data-category="view">
-                    <div class="lib-panel" ng-class="{'hvr-grow': hover}" ng-mouseenter="hover = true"
+                    <div class="list-card" ng-class="{'hvr-grow': hover}" ng-mouseenter="hover = true"
                          ng-mouseleave="hover = false" ng-click="handleClick(item)" >
                         <div class="row box-shadow">
                             <div class="col-4 col-sm-3 col-md-3 img-container">
                                 <img class="lib-img-show" src="{{url(item)}}">
                             </div>
                             <div class="col-6 col-sm-8 col-md-8">
-                                <div class="lib-row lib-header">
-                                    {{item.name}} -- {{item.type}}
-                                    <div class="lib-header-seperator"></div>
+                                <div class="card-row col-12">
+                                    <span class="item-name">{{item.name}}</span>
+                                    <span class="divider"> | </span>
+                                    <span class="item-type">{{item.type}}</span>
+                                    <div class="card-header-seperator"></div>
                                 </div>
-                                <div class="lib-row lib-desc">
-                                    {{item.inspection.results}}
-                                    {{item.inspection.risk}}
+                                <div class="card-row card-desc">
+                                    <table class="table table-bordered col-12 inspection-results-table">
+                                        <thead class="thead-dark">
+                                            <tr class="header-row">
+                                                <th>Results</th>
+                                                <th>Risk</th>
+                                                <th># of Violations</th>
+                                            </tr>
+                                        </thead>
+                                        <tr class="table-data-row">
+                                            <td><span class="inspection-results">{{item.inspection.results}}</span></td>
+                                            <td><span class="inspection-risk">{{item.inspection.risk}}</span></td>
+                                            <td>
+                                                <span class="inspection-violation-count">
+                                                    {{violationCount(item.inspection.violations)}}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <p class="inspection-violations">{{trimmedViolations(item.inspection.violations)}}</p>
                                 </div>
                             </div>
                         </div>
@@ -49,30 +103,14 @@
                 </div>
             </div>
         </div>
-        <div class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Modal body text goes here.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <script type="application/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+<script type="application/javascript" src="node_modules/moment/moment.js"></script>
+<script type="application/javascript" src="node_modules/lodash/lodash.js"></script>
 <script type="application/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script type="application/javascript" src="node_modules/angular-modal-service/dst/angular-modal-service.js"></script>
 
 <script type="application/javascript" src="js/bundle.js"></script>
 </body>

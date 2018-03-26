@@ -1,10 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="modal fade in">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                <h4 class="modal-title">{{detailsModalController.data.name}} | {{detailsModalController.data.type}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="details-modal-content row">
+                    <div class="col-5 col-sm-5 col-md-5 img-container">
+                        <img class="lib-img-show" src="{{detailsModalController.url}}">
+                    </div>
+                    <div class="col-5 violations-modal-text">
+                            <div class="col-12 text-center">
+                            <div class="panel panel-success inspection-panel">
+                                <div class="panel-body text-center">
+                                    <div class="violations-panel-text">Inspection</div>
+                                </div>
+                                <ul class="list-group text-center">
+                                    <li class="list-group-item"><i class="fa fa-check"></i>
+                                        <div class="violations-panel-text">
+                                            Location | {{detailsModalController.data.locationData.address}}
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i>
+                                        <div class="violations-panel-text">
+                                            Inspection Date | {{detailsModalController.inspectionDate}}
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i>
+                                        <div class="violations-panel-text">
+                                            Results | {{detailsModalController.data.inspection.results}}
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i>
+                                        <div class="violations-panel-text">
+                                            Risk | {{detailsModalController.data.inspection.risk}}
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item"><i class="fa fa-check"></i>
+                                        <div class="violations-panel-text">
+                                            violations | {{detailsModalController.violationCount}}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <p>{{detailsModalController.trimmedViolations}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group">
+                    <button class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
