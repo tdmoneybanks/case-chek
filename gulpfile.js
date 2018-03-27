@@ -1,8 +1,10 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
+var cleanCSS = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var babel = require('gulp-babel');
+var nodemon = require('nodemon');
 var sourcemaps = require('gulp-sourcemaps');
 var runSequence = require('run-sequence');
 var gnf = require('gulp-npm-files');
@@ -10,7 +12,7 @@ var del = require('del');
 var exec = require('child_process').exec;
 
 gulp.task('default', function (callback) {
-    runSequence(['copy-index', 'copy-assets', 'copy-deps', 'build-sass', 'build-js:dev', 'watch', 'serve'],
+    runSequence(['copy-index', 'copy-assets', 'copy-deps', 'build-sass:dev', 'build-js:dev', 'watch', 'serve'],
         callback
     );
 });
@@ -22,11 +24,29 @@ gulp.task('build:prod', function (callback) {
     );
 });
 
-gulp.task('build-sass', function(){
+gulp.task('build-sass:dev', function(){
+    return gulp.src('app/scss/**/*.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass())
+        .pipe(concat('bundle.css'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('dist/css'))
+});
+
+gulp.task('build-sass', function() {
     return gulp.src('app/scss/**/*.scss')
         .pipe(sass())
-        .pipe(concat('bundle.css'))// Converts Sass to CSS with gulp-sass
+        .pipe(concat('bundle.css'))
+        .pipe(cleanCSS())
         .pipe(gulp.dest('dist/css'))
+});
+
+gulp.task('minify-css',() => {
+    return gulp.src('./src/*.css')
+        .pipe(sourcemaps.init())
+        .pipe(cleanCSS())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', function() {
@@ -72,8 +92,13 @@ gulp.task('clean:dist', function() {
     return del.sync('dist/*');
 });
 
-gulp.task('serve', function(callback) {
-    exec('node server.js', {maxBuffer: 1024 * 500}, function (err, stdout, stderr) {
-        callback(err);
+gulp.task('serve', function() {
+    // configure nodemon
+    nodemon({
+        // the script to run the app
+        script: 'server.js',
+        // this listens to changes in any of these files/routes and restarts the application
+        watch: ["server.js"],
+        ext: 'js'
     });
 });
