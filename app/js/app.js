@@ -13,7 +13,9 @@ caseChekApp.controller('AppController', ['$scope', 'chicagoDataService', functio
     $scope.page = 1;
     $scope.hasMore = false;
 
-
+    /**
+     * real-time search queries based on input tying
+     */
     $scope.search = function() {
         $scope.page = 1;
         $scope.hasMore = true;
@@ -25,7 +27,10 @@ caseChekApp.controller('AppController', ['$scope', 'chicagoDataService', functio
             $scope.hasMore = response.data.length < 15 ? false : true;
         });
     }
-
+    // TODO: could be refactored to not use an expensive watcher but instead event listeners on buttons
+    /**
+     * Watch for a change on the page variable to update data list by pagination
+     */
     $scope.$watch('page', function() {
         chicagoDataService.getData({searchText: $scope.searchText, page: $scope.page}).then((response) => {
             $scope.data = response.data;

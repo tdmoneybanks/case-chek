@@ -13,6 +13,9 @@ caseChekApp.controller('AppController', ['$scope', 'chicagoDataService', functio
     $scope.page = 1;
     $scope.hasMore = false;
 
+    /**
+     * real-time search queries based on input tying
+     */
     $scope.search = function () {
         $scope.page = 1;
         $scope.hasMore = true;
@@ -24,7 +27,10 @@ caseChekApp.controller('AppController', ['$scope', 'chicagoDataService', functio
             $scope.hasMore = response.data.length < 15 ? false : true;
         });
     };
-
+    // TODO: could be refactored to not use an expensive watcher but instead event listeners on buttons
+    /**
+     * Watch for a change on the page variable to update data list by pagination
+     */
     $scope.$watch('page', function () {
         chicagoDataService.getData({ searchText: $scope.searchText, page: $scope.page }).then(function (response) {
             $scope.data = response.data;
@@ -66,16 +72,25 @@ caseChekApp.service('chicagoDataService', function ($http) {
 
 caseChekApp.controller('ListController', ['$scope', 'chicagoDataService', 'ModalService', function ListController($scope, chicagoDataService, ModalService) {
 
+    // initial data grab from server
     chicagoDataService.getData({ searchText: $scope.searchText, page: $scope.page }).then(function (response) {
         $scope.$parent.data = response.data;
         $scope.$parent.hasMore = response.data.length < 15 ? false : true;
     });
 
     // TODO: refactor, this can probably be done in the template
+    /**
+     * used by prev button show/hide logic
+     * @return {boolean}
+     */
     $scope.onPageOne = function () {
         return $scope.page === 1;
     };
 
+    /**
+     * handleClick - function to handle click of list card
+     * @param data - data of the list card that was clicked on
+     */
     $scope.handleClick = function (data) {
         ModalService.showModal({
             templateUrl: '../templates/details-modal.html',
@@ -93,14 +108,30 @@ caseChekApp.controller('ListController', ['$scope', 'chicagoDataService', 'Modal
     };
 
     // TODO: move this violation data alteration to the backend?
+    /**
+     *
+     * @param violations - text block of violation count and violation list
+     * @return {string | a number of violations or 0}
+     */
     $scope.violationCount = function (violations) {
         return violations.substr(0, violations.indexOf('.')) || '0';
     };
 
+    /**
+     *
+     * @param violations - text block of violation count and violation list
+     * @return {string | violation list without the count}
+     */
     $scope.trimmedViolations = function (violations) {
         return violations.substr(violations.indexOf(' ')) || 'No Violations Found';
     };
 
+    /**
+     *
+     * @param data - data of list card, used for address
+     * @param size - size of street view image to query
+     * @return {string} - img url for google streetview api
+     */
     $scope.url = function (data) {
         var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "300x275";
 

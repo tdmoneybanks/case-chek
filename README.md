@@ -8,6 +8,7 @@ This is a simple node application built using gulp and can be run easily.
 3. build the code base and run the server `gulp`
 4. visit the running application at `http://localhost:8080`
 ### Features
+* gulp build featuring: nodemon, sourcemaps, concat and minify JS/CSS, SASS, ES6, file watcher
 * Real-time Fuzzy search with advanced search capabilities
     - http://fusejs.io/
 * Node middle/api layer allowing transformation of data, data sharding (pagination)
@@ -26,5 +27,3 @@ This is a simple node application built using gulp and can be run easily.
 * sorting functionality
 * ui/display changes based on pass/fail of inspection (green/red indicators)
 * Use a bundler like webpack or rollup to ease handling of dependencies and use es6 import/export
-* ***TODO*** JSdocs
-* ***TODO*** write some tests
