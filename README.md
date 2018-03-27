@@ -7,6 +7,7 @@ This is a simple node application built using gulp and can be run easily.
 2. install the Deps `npm install`
 3. build the code base and run the server `gulp`
 4. visit the running application at `http://localhost:8080`
+5. to build code for production, run `gulp build:prod` easily run the code using pm2 on digital ocean, aws, or other host
 ### Features
 * gulp build featuring: nodemon, sourcemaps, concat and minify JS/CSS, SASS, ES6, file watcher
 * Real-time Fuzzy search with advanced search capabilities
