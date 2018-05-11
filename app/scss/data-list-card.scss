@@ -1,0 +1,32 @@
+.list-card {
+  margin-bottom: 20Px;
+
+  .box-shadow {
+    border-radius: 15px;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
+  }
+
+  .card-row {
+    padding: 0 20px 0 20px;
+
+    .card-header-seperator {
+      height: 2px;
+      background-color: lightgrey;
+      margin: 7px 0 7px 0;
+    }
+  }
+
+  .card-desc {
+    position: relative;
+    height: 100%;
+    display: block;
+    font-size: 13px;
+  }
+
+  .col-md-6 {
+    border-radius: 15px;
+    padding: 0;
+    background-color: #FFFFFF;
+  }
+}

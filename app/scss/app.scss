@@ -1,71 +1,148 @@
-body {
+@mixin text-styling {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+
+.case-chek-page {
   background-color: grey;
   display: flex;
   justify-content: center;
+
+  .img-container {
+    overflow: hidden;
+    padding-left: 0px;
+    margin: 10px;
+    border: 2px dashed lightgrey;
+    border-radius: 10px;
+  }
 }
 
 .case-chek-app {
-  display: flex;
-  justify-content: center;
+  display: block;
   border: 5px solid grey;
   padding: 100px 50px;
   border-radius: 10px;
   background-color: white;
+
+  .search-component {
+    display: flex;
+    justify-content: center;
+    margin: 25px 15px 50px;
+
+    .search-text {
+      text-align: center;
+    }
+  }
+
+  .advanced-search-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    .keyword-label {
+      font-weight: bold;
+      margin: 5px;
+    }
+  }
+
+  .chicago-data-list {
+    display: flex;
+    justify-content: center;
+
+    .item-name {
+      @include text-styling;
+      max-width: 80%;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .divider {
+      color: lightgrey;
+      font-size: 24px;
+    }
+
+    .item-type {
+      @include text-styling;
+      max-width: 40%;
+      font-style: italic;
+      font-weight: lighter;
+      color: lightgrey;
+      font-size: 16px;
+    }
+
+    .inspection-results-table {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    // multi-line ellipsis
+    .inspection-violations {
+      position: relative;
+      overflow: hidden;
+      text-align: justify;
+      line-height: 1.2em;
+      max-height: 8.0em;
+      margin-right: -1em;
+      padding-right: 1em;
+      margin-bottom: 15px;
+    }
+
+    .inspection-violations:before {
+      content: '...';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    .inspection-violations:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      width: 1em;
+      height: 1em;
+      margin-top: 0.2em;
+      background: white;
+    }
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: flex-end;
+
+    .prev-button {
+      width: 50%;
+    }
+    .next-button {
+      width: 50%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  @media screen and (min-width: 0px) and (max-width: 560px) {
+    .inspection-violations, .inspection-results-table, .divider, .card-header-seperator {
+      display: none;
+    }
+
+    .chicago-data-list {
+      .item-type, .item-name {
+        display: unset !important;
+        white-space: normal;
+      }
+
+      .img-container {
+        height: 150px;
+      }
+    }
+  }
 }
 
-.lib-panel {
-  margin-bottom: 20Px;
-}
-.lib-panel img {
-  width: 100%;
-  background-color: transparent;
-}
-
-.lib-panel .row,
-.lib-panel .col-md-6 {
-  border-radius: 15px;
-  padding: 0;
-  background-color: #FFFFFF;
-}
-
-
-.lib-panel .lib-row {
-  padding: 0 20px 0 20px;
-}
-
-.lib-panel .lib-row.lib-header {
-  background-color: #FFFFFF;
-  font-size: 20px;
-  padding: 10px 20px 0 20px;
-}
-
-.lib-panel .lib-row.lib-header .lib-header-seperator {
-  height: 2px;
-  width: 26px;
-  background-color: #d9d9d9;
-  margin: 7px 0 7px 0;
-}
-
-.lib-panel .lib-row.lib-desc {
-  position: relative;
-  height: 100%;
-  display: block;
-  font-size: 13px;
-}
-.lib-panel .lib-row.lib-desc a{
-  position: absolute;
-  width: 100%;
-  bottom: 10px;
-  left: 20px;
-}
 
 .row-margin-bottom {
   margin-bottom: 20px;
-}
-
-.box-shadow {
-  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
-  box-shadow: 0 0 10px 0 rgba(0,0,0,.10);
 }
 
 .no-padding {

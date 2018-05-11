@@ -1,12 +1,30 @@
 # Casechek Techincal Interview Example App
 ***A small Angular/Express application to view and filter Chicago data***.
 
+### Getting Started
+This is a simple node application built using gulp and can be run easily.
+1. clone the application (use the feature branch) `git clone https://github.com/tdmoneybanks/case-chek.git -b feature/search-tools`
+2. install the Deps `npm install`
+3. build the code base and run the server `gulp` install gulp cli if you have not `npm install -g gulp`
+4. visit the running application at `http://localhost:8080`
+5. to build code for production, run `gulp build:prod` easily run the code using pm2 on digital ocean, aws, or other host
 ### Features
-* Fuzzy search through http://fusejs.io/
+* gulp build featuring: nodemon, sourcemaps, concat and minify JS/CSS, SASS, ES6, file watcher
+* Real-time Fuzzy search with advanced search capabilities
+    - http://fusejs.io/
 * Node middle/api layer allowing transformation of data, data sharding (pagination)
-* http requests through angular $http on the front-end and Axios on the backend
-    - https://github.com/axios/axios
-* ***TODO*** front end filtering and seach (with live update)
-* ***TODO*** google street view api to incoroporte image based on address
-* ***TODO*** front end filter tools and buttons
-* ***TODO*** more front end changes for stylingal interview
+* caching of data on server side for performance
+* front end pagination
+* google streetview api
+* modal-based detail view
+
+### Enhancements
+* stengthen caching strategy by aligning it with front-end generated session-id
+* encoroprate loading states to improve the ui of application
+* refactor list-card into separate angular component
+* use google api angular service and determine what is a "good image" and handling of "bad" images.
+* some results appear to be duplicates, filter these out on the server side
+* implement front end router and assign a query param of the item's id when a detailed view is open (allowing users to navigate back to specific detail view)
+* sorting functionality
+* ui/display changes based on pass/fail of inspection (green/red indicators)
+* Use a bundler like webpack or rollup to ease handling of dependencies and use es6 import/export
