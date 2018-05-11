@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require babel-register test/**/*"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,8 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.0.0",
@@ -31,7 +33,9 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "gulp-useref": "^3.1.5",
-    "run-sequence": "^2.2.1"
+    "mocha": "^5.1.1",
+    "run-sequence": "^2.2.1",
+    "sinon": "^5.0.7"
   },
   "dependencies": {
     "angular-modal-service": "^0.13.0",
