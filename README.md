@@ -3,11 +3,12 @@
 
 ### Getting Started
 This is a simple node application built using gulp and can be run easily.
-1. clone the application (use the feature branch) `git clone https://github.com/tdmoneybanks/case-chek.git -b feature/search-tools`
+1. clone the application `git clone https://github.com/tdmoneybanks/case-chek.git`
 2. install the Deps `npm install`
-3. build the code base and run the server `gulp` install gulp cli if you have not `npm install -g gulp`
-4. visit the running application at `http://localhost:8080`
-5. to build code for production, run `gulp build:prod` easily run the code using pm2 on digital ocean, aws, or other host
+3. install gulp cli if you have not `npm install -g gulp`
+4. build the code base and run the server `gulp`
+5. visit the running application at `http://localhost:8080`
+6. to build code for production, run `gulp build:prod` easily run the code using pm2 on digital ocean, aws, or other host
 ### Features
 * gulp build featuring: nodemon, sourcemaps, concat and minify JS/CSS, SASS, ES6, file watcher
 * Real-time Fuzzy search with advanced search capabilities
